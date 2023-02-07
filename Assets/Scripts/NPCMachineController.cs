@@ -18,7 +18,7 @@ public class NpcMachineController : MonoBehaviour
     private void Update()
     {
         _obstacleDetected = CheckForObstacle();
-        if (!_obstacleDetected)
+        // if (!_obstacleDetected)
             MoveCar();
 
 

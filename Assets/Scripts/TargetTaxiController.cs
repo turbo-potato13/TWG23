@@ -1,65 +1,39 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class TargetTaxiController : MonoBehaviour
 {
     public List<Vector3> coordinates;
-    public PassengerGenerator m_PassengerGenerator;
+    public PassengerGenerator passengerGenerator;
+    public GameObject target;
 
-    private int counter;
-    public GameObject Icon;
+    private int m_Counter;
+
     private void Start()
     {
-        transform.position = coordinates[0];
+        target.transform.position = coordinates[0];
     }
 
-    public void SwitchIcon(bool enabled)
-    {
-        Debug.Log("SwitchIcon" + enabled);
-        Icon.SetActive(enabled);
-    }
-    
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            m_PassengerGenerator.nextPassenger();
-
-            // insideSquare = true;
-            Debug.Log("enter");
-            counter++;
+            m_Counter++;
             ShowNewTarget();
+            passengerGenerator.NextPassenger();
+            target.SetActive(false);
+
+            Debug.Log("enter");
         }
     }
-
-    // void OnTriggerExit(Collider other)
-    // {
-    //     if (other.gameObject.tag.Equals("Player"))
-    //     {
-    //         // insideSquare = false;
-    //     }
-    // }
-
-    
     public void ShowNewTarget()
     {
-        transform.position = coordinates[counter];
+        target.transform.position = coordinates[m_Counter];
     }
 
     public Vector3 GetCurrentTarget()
     {
-        return coordinates[counter];
+        return coordinates[m_Counter];
     }
-
-    // void Update()
-    // {
-    //     if (insideSquare)
-    //     {
-    //         transform.position = coordinates[counter];
-    //     }
-    // }
+    
 }
-

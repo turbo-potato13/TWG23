@@ -1,46 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace DefaultNamespace
+public class PassengerGenerator : MonoBehaviour
 {
-    public class PassengerGenerator : MonoBehaviour
+    public List<GameObject> passengers;
+    private int m_PassengerCount;
+
+    private void Awake()
     {
-        public List<GameObject> passengers;
-        public int passengerCount;
-        
-        private void Awake()
+        foreach (var passenger in passengers)
         {
-            foreach (var passenger in passengers)
-            {
-                passenger.SetActive(false);  
-            }
-            passengers[0].SetActive(true);
+            passenger.SetActive(false);
         }
 
-        public void nextPassenger()
-        {
-            passengerCount++;
-            passengers[passengerCount].SetActive(true);
-        }
+        passengers[0].SetActive(true);
+    }
 
-        public GameObject getCurrentPassenger()
-        {
-            
-            return passengers[passengerCount];
-        }
+    public void NextPassenger()
+    {
+        passengers[m_PassengerCount].SetActive(false);
+        m_PassengerCount++;
+        passengers[m_PassengerCount].SetActive(true);
+    }
 
-        public void DisableCurrentPassenger()
-        {
-            passengers[passengerCount].SetActive(false);
-        }
-
-        public void DisableIconCurrentPassenger()
-        {
-            foreach (Transform child in  passengers[passengerCount].transform) 
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
+    public GameObject GetCurrentPassenger()
+    {
+        return passengers[m_PassengerCount];
     }
 }

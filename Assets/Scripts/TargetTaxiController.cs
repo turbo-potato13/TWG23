@@ -6,12 +6,14 @@ public class TargetTaxiController : MonoBehaviour
     public List<Vector3> coordinates;
     public PassengerGenerator passengerGenerator;
     public GameObject target;
+    private int m_MaxSize;
 
     private int m_Counter;
 
     private void Start()
     {
         target.transform.position = coordinates[0];
+        m_MaxSize = coordinates.Count;
     }
 
     void OnTriggerEnter(Collider other)
@@ -26,14 +28,18 @@ public class TargetTaxiController : MonoBehaviour
             Debug.Log("enter");
         }
     }
+
     public void ShowNewTarget()
     {
-        target.transform.position = coordinates[m_Counter];
+        if (m_Counter < m_MaxSize)
+            target.transform.position = coordinates[m_Counter];
     }
 
     public Vector3 GetCurrentTarget()
     {
-        return coordinates[m_Counter];
+        if (m_Counter < m_MaxSize)
+            return coordinates[m_Counter];
+        else
+            return Vector3.zero;
     }
-    
 }

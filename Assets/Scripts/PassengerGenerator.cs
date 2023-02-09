@@ -5,9 +5,11 @@ public class PassengerGenerator : MonoBehaviour
 {
     public List<GameObject> passengers;
     private int m_PassengerCount;
+    private int m_MaxSize;
 
     private void Awake()
     {
+        m_MaxSize = passengers.Count;
         foreach (var passenger in passengers)
         {
             passenger.SetActive(false);
@@ -20,11 +22,15 @@ public class PassengerGenerator : MonoBehaviour
     {
         passengers[m_PassengerCount].SetActive(false);
         m_PassengerCount++;
-        passengers[m_PassengerCount].SetActive(true);
+        if (m_PassengerCount < m_MaxSize)
+            passengers[m_PassengerCount].SetActive(true);
     }
 
     public GameObject GetCurrentPassenger()
     {
-        return passengers[m_PassengerCount];
+        if (m_PassengerCount < m_MaxSize)
+            return passengers[m_PassengerCount];
+        else
+            return null;
     }
 }

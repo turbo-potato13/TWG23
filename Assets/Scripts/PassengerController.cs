@@ -19,6 +19,9 @@ public class PassengerController : MonoBehaviour
     private void Update()
     {
         var passenger = passengerGenerator.GetCurrentPassenger();
+        if (passenger == null)
+            return;
+
         if (!isPickedUp)
         {
             float distance = Vector3.Distance(taxi.transform.position, passenger.transform.position);

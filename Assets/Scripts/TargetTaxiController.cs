@@ -24,8 +24,6 @@ public class TargetTaxiController : MonoBehaviour
             ShowNewTarget();
             passengerGenerator.NextPassenger();
             target.SetActive(false);
-
-            Debug.Log("enter");
         }
     }
 

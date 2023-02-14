@@ -4,6 +4,7 @@ using UnityEngine;
 public class PassengerGenerator : MonoBehaviour
 {
     public List<GameObject> passengers;
+    public DialogManager dialogManager;
     private int m_PassengerCount;
     private int m_MaxSize;
 
@@ -23,7 +24,10 @@ public class PassengerGenerator : MonoBehaviour
         passengers[m_PassengerCount].SetActive(false);
         m_PassengerCount++;
         if (m_PassengerCount < m_MaxSize)
+        {
             passengers[m_PassengerCount].SetActive(true);
+            dialogManager.EnableDialogByNumber(m_PassengerCount);
+        }
     }
 
     public GameObject GetCurrentPassenger()

@@ -10,9 +10,11 @@ public class PassengerController : MonoBehaviour
     private Rigidbody m_TaxiRigidBody;
     public float pickupRadius = 2.0f;
     public GameObject target;
+    public DialogManager dialogManager;
 
     private void Start()
     {
+        dialogManager.DeactivateGameObjects();
         m_TaxiRigidBody = taxi.GetComponent<Rigidbody>();
     }
 
@@ -26,6 +28,7 @@ public class PassengerController : MonoBehaviour
         {
             float distance = Vector3.Distance(taxi.transform.position, passenger.transform.position);
             //Условие чтобы пассажир сел
+            Debug.Log(distance);
             if (distance <= pickupRadius && m_TaxiRigidBody.velocity == Vector3.zero)
             {
                 PassengerSitsDown(passenger);
@@ -33,17 +36,17 @@ public class PassengerController : MonoBehaviour
         }
 
         //Условие во время поездки
-        if (isPickedUp && !isDroppedOff)
+        if (isPickedUp)
         {
             var destination = targetTaxiController.GetCurrentTarget();
             float distance = Vector3.Distance(taxi.transform.position, destination);
             //Условие что машина приехала
-            if (distance <= pickupRadius)
+            if (distance <= 6)
             {
                 isPickedUp = false;
-                isDroppedOff = true;
                 passenger.transform.position = destination;
                 passenger.SetActive(true);
+                dialogManager.DeactivateGameObjects();
             }
         }
     }
@@ -54,5 +57,6 @@ public class PassengerController : MonoBehaviour
         isPickedUp = true;
         targetTaxiController.ShowNewTarget();
         passenger.transform.position = new Vector3(1000, 1000, 1000);
+        dialogManager.ActivateGameObjects();
     }
 }

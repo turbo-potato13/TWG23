@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4deed882011c73a4f855d6358bef4346
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Pobeda
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 22a39d6ef49783646b2a0c328e177c1c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,43 +1,49 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcScript : MonoBehaviour
 {
-    public float speed = 10f;
-    public float xMin = -5f;
-    public float xMax = 5f;
-    public float zMin = -5f;
-    public float zMax = 5f;
-    public float obstacleDetectionRadius = 1f;
-    public LayerMask obstacleLayer;
+    public float speed = 5f;
+    public List<Vector3> movePoints;
+    private Vector3 m_TargetPoint;
+    private bool m_ObstacleDetected;
 
-    private Rigidbody rigidbody;
 
-    private void Start()
+    void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        StartCoroutine(Movement());
+        m_TargetPoint = movePoints[0];
     }
 
-    private IEnumerator Movement()
+
+    void Update()
     {
-        while (true)
+        if (transform.position == m_TargetPoint)
         {
-            float x = Random.Range(xMin, xMax);
-            float z = Random.Range(zMin, zMax);
-            Vector3 targetPosition = new Vector3(x, 0, z);
-            Vector3 direction = (targetPosition - transform.position).normalized;
-
-            // Check if there's an obstacle in the way
-            if (Physics.SphereCast(transform.position, obstacleDetectionRadius, direction, out RaycastHit hit, Mathf.Infinity, obstacleLayer))
-            {
-                // If there's an obstacle, turn 180 degrees
-                direction = -direction;
-            }
-
-            rigidbody.velocity = direction * speed;
-            yield return new WaitForFixedUpdate();
+            ChooseNewTarget();
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, m_TargetPoint, speed * Time.deltaTime);
+    }
+
+    private void ChooseNewTarget()
+    {
+        if (m_ObstacleDetected)
+        {
+            m_TargetPoint = movePoints[Random.Range(0, movePoints.Count)];
+            m_ObstacleDetected = false;
+            return;
+        }
+
+        int randomIndex = Random.Range(0, movePoints.Count);
+        m_TargetPoint = movePoints[randomIndex];
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, (m_TargetPoint - transform.position), out hit,
+                Vector3.Distance(transform.position, m_TargetPoint)))
+        {
+            m_ObstacleDetected = true;
+        }
+
+        Debug.Log(hit);
     }
 }

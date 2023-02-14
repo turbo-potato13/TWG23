@@ -28,7 +28,7 @@ public class PassengerController : MonoBehaviour
         {
             float distance = Vector3.Distance(taxi.transform.position, passenger.transform.position);
             //Условие чтобы пассажир сел
-            Debug.Log(distance);
+            // Debug.Log(distance);
             if (distance <= pickupRadius && m_TaxiRigidBody.velocity == Vector3.zero)
             {
                 PassengerSitsDown(passenger);

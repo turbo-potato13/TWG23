@@ -43,7 +43,5 @@ public class NpcScript : MonoBehaviour
         {
             m_ObstacleDetected = true;
         }
-
-        Debug.Log(hit);
     }
 }

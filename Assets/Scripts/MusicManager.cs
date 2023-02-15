@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using TMPro;
 
 public class MusicManager : MonoBehaviour
 {
     public List<Music> musics;
-    private string currentMusicId;
+    private string m_CurrentMusicId;
     public int musicNum;
     public AudioMixerGroup mixer;
     public Slider slider;
@@ -23,13 +22,14 @@ public class MusicManager : MonoBehaviour
             music.audioSource.clip = music.audioClip;
             music.audioSource.outputAudioMixerGroup = mixer;
         }
+
         musicName.text = "";
         mixer.audioMixer.SetFloat("MusicParam", -10f);
     }
 
     private void Update()
     {
-        if(!musics[musicNum].audioSource.isPlaying && isPlay)
+        if (!musics[musicNum].audioSource.isPlaying && isPlay)
             NextMusic();
     }
 
@@ -59,7 +59,7 @@ public class MusicManager : MonoBehaviour
             isPlay = true;
         }
     }
-    
+
     public void PrevMusic()
     {
         musics[musicNum].audioSource.Stop();
@@ -79,7 +79,6 @@ public class MusicManager : MonoBehaviour
 
     public void ChangeVolume()
     {
-        Debug.Log("volume: " + Mathf.Lerp(-35, 0, slider.value));
         mixer.audioMixer.SetFloat("MusicParam", Mathf.Lerp(-35, 0, slider.value));
     }
 }

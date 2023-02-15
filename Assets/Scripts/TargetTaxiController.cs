@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class TargetTaxiController : MonoBehaviour
     public PassengerGenerator passengerGenerator;
     public GameObject target;
     private int m_MaxSize;
+    public float rotationSpeed = 10f;
 
     private int m_Counter;
 
@@ -14,6 +16,11 @@ public class TargetTaxiController : MonoBehaviour
     {
         target.transform.position = coordinates[0];
         m_MaxSize = coordinates.Count;
+    }
+
+    private void Update()
+    {
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }
 
     void OnTriggerEnter(Collider other)

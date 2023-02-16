@@ -58,14 +58,14 @@ public class DrunkDialogController : MonoBehaviour
 
     public void Phrase21()
     {
-        phrase.text = "Так я в стриптиз бар. Включи песню ... ";
+        phrase.text = "Так я в стриптиз бар. Включи Зеленоглазое Такси ";
         answer1.text = "Хорошо";
         answer2.text = "Нет";
     }
 
     public void Phrase22()
     {
-        phrase.text = "Включи песню ...";
+        phrase.text = "Включи Зеленоглазое Такси";
         answer1.text = "Хорошо";
         answer2.text = "Нет";
     }

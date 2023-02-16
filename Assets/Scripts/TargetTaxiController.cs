@@ -40,7 +40,6 @@ public class TargetTaxiController : MonoBehaviour
             target.transform.position = coordinates[m_Counter];
         else
         {
-            Debug.Log("WTF");
             panel.SetActive(true);
             Invoke("EndGame", 3f);
         }

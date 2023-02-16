@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class DayNightController : MonoBehaviour
 {
     public Gradient directionalLightGradient;

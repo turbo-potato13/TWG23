@@ -27,7 +27,7 @@ public class PassengerController : MonoBehaviour
         if (!isPickedUp)
         {
             float distance = Vector3.Distance(taxi.transform.position, passenger.transform.position);
-            Debug.Log(distance);
+            // Debug.Log(distance);
             //Условие чтобы пассажир сел
             if (distance <= pickupRadius && m_TaxiRigidBody.velocity == Vector3.zero)
             {
@@ -44,7 +44,7 @@ public class PassengerController : MonoBehaviour
             if (distance <= 6)
             {
                 isPickedUp = false;
-                passenger.transform.position = destination;
+                passenger.transform.position = new Vector3(destination.x, 0.85f, destination.z);
                 passenger.SetActive(true);
                 dialogManager.DeactivateGameObjects();
             }

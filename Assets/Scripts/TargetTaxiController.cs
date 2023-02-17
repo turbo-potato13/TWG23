@@ -41,7 +41,7 @@ public class TargetTaxiController : MonoBehaviour
         else
         {
             panel.SetActive(true);
-            Invoke("EndGame", 3f);
+            Invoke("EndGame", 5f);
         }
     }
 

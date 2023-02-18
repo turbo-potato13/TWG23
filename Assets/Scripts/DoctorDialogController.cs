@@ -86,6 +86,7 @@ public class DoctorDialogController : MonoBehaviour
     public void Phrase31()
     {
         phrase.text = "Да.";
+        DisableParents(3);
         answer1.text = "";
         answer2.text = "";
     }
@@ -95,6 +96,7 @@ public class DoctorDialogController : MonoBehaviour
         phrase.text = "Не, это уже сложно";
         answer1.text = "Ладно";
         answer2.text = "";
+        DisableParents(2);
     }
 
     public void SetAnsw1()
@@ -116,5 +118,22 @@ public class DoctorDialogController : MonoBehaviour
     public void DeactivateGameObjects()
     {
         dialogManager.DeactivateGameObjects();
+    }
+
+    public void DisableParents(int code)
+    {
+        switch (code)
+        {
+            case 1:
+                answer1.transform.parent.gameObject.SetActive(false);
+                break;
+            case 2:
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+            case 3:
+                answer1.transform.parent.gameObject.SetActive(false);
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+        }
     }
 }

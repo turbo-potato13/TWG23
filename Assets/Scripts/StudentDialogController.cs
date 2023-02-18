@@ -79,6 +79,7 @@ public class StudentDialogController : MonoBehaviour
     public void Phrase32()
     {
         phrase.text = "Пидора ответ";
+        DisableParents(3);
         answer1.text = "";
         answer2.text = "";
     }
@@ -102,5 +103,22 @@ public class StudentDialogController : MonoBehaviour
     public void DeactivateGameObjects()
     {
         dialogManager.DeactivateGameObjects();
+    }
+
+    public void DisableParents(int code)
+    {
+        switch (code)
+        {
+            case 1:
+                answer1.transform.parent.gameObject.SetActive(false);
+                break;
+            case 2:
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+            case 3:
+                answer1.transform.parent.gameObject.SetActive(false);
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+        }
     }
 }

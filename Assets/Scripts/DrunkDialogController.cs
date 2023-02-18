@@ -73,6 +73,7 @@ public class DrunkDialogController : MonoBehaviour
     public void Phrase31()
     {
         phrase.text = "Оставлю тебе чаевых [блюет].";
+        DisableParents(3);
         answer1.text = "";
         answer2.text = "";
     }
@@ -80,6 +81,7 @@ public class DrunkDialogController : MonoBehaviour
     public void Phrase32()
     {
         phrase.text = "Пидора ответ";
+        DisableParents(3);
         answer1.text = "";
         answer2.text = "";
     }
@@ -98,6 +100,23 @@ public class DrunkDialogController : MonoBehaviour
     {
         m_Answ1 = false;
         m_Answ2 = false;
+    }
+
+    public void DisableParents(int code)
+    {
+        switch (code)
+        {
+            case 1:
+                answer1.transform.parent.gameObject.SetActive(false);
+                break;
+            case 2:
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+            case 3:
+                answer1.transform.parent.gameObject.SetActive(false);
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+        }
     }
 
     public void DeactivateGameObjects()

@@ -43,4 +43,9 @@ public class NpcMachine : MonoBehaviour
             m_CurrentWaypoint = (m_CurrentWaypoint + 1) % waypoints.Count;
         }
     }
+
+    public Vector3 GetCurrentVector()
+    {
+        return waypoints[m_CurrentWaypoint];
+    }
 }

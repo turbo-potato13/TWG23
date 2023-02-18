@@ -45,12 +45,14 @@ public class PigDialogController : MonoBehaviour
     {
         countNode = 1;
         phrase.text = "Давай быстрее я организатор на конкурсе игр. Такую тему придумал";
+        DisableParents(2);
         answer1.text = "Что за тема?";
         answer2.text = "";
     }
 
     public void Phrase2()
     {
+        EnableAllButton();
         phrase.text = "Остановись, мгновенье, ты прекрасно!";
         answer1.text = "Ого, какая интересная тема";
         answer2.text = "Ну и мразь же ты";
@@ -59,6 +61,7 @@ public class PigDialogController : MonoBehaviour
     public void Phrase31()
     {
         phrase.text = "Спасибо!";
+        DisableParents(3);
         answer1.text = "";
         answer2.text = "";
     }
@@ -66,6 +69,7 @@ public class PigDialogController : MonoBehaviour
     public void Phrase32()
     {
         phrase.text = "Я знаю";
+        DisableParents(3);
         answer1.text = "";
         answer2.text = "";
     }
@@ -89,5 +93,28 @@ public class PigDialogController : MonoBehaviour
     public void DeactivateGameObjects()
     {
         dialogManager.DeactivateGameObjects();
+    }
+
+    public void EnableAllButton()
+    {
+        answer1.transform.parent.gameObject.SetActive(true);
+        answer2.transform.parent.gameObject.SetActive(true);
+    }
+
+    public void DisableParents(int code)
+    {
+        switch (code)
+        {
+            case 1:
+                answer1.transform.parent.gameObject.SetActive(false);
+                break;
+            case 2:
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+            case 3:
+                answer1.transform.parent.gameObject.SetActive(false);
+                answer2.transform.parent.gameObject.SetActive(false);
+                break;
+        }
     }
 }
